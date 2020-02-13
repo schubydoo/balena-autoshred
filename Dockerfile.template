@@ -1,0 +1,18 @@
+# base-image for Debian Stretch on any machine using a template variable,
+# see more about dockerfile templates here: https://www.balena.io/docs/learn/develop/dockerfile/
+FROM balenalib/%%BALENA_ARCH%%-debian:stretch as run
+
+# use `install_packages` if you need to install dependencies,
+RUN install_packages coreutils vim screen
+
+# Set our working directory
+WORKDIR /usr/src/autoshred
+
+# This will copy all files in our root to the working  directory in the container
+COPY . ./
+
+# Run autoshred.sh
+RUN ./autoshred.sh
+
+# Enable udevd so that plugged dynamic hardware devices show up in our container.
+ENV UDEV=1
