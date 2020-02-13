@@ -11,8 +11,8 @@ WORKDIR /usr/src/autoshred
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-# Run autoshred.sh
-RUN ./autoshred.sh
-
 # Enable udevd so that plugged dynamic hardware devices show up in our container.
 ENV UDEV=1
+
+# Run autoshred.sh
+RUN chmod +x ./autoshred.sh
