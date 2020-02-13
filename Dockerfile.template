@@ -14,5 +14,8 @@ COPY . ./
 # Enable udevd so that plugged dynamic hardware devices show up in our container.
 ENV UDEV=1
 
-# Run autoshred.sh
+# Chmod autoshred.sh
 RUN chmod +x ./autoshred.sh
+
+# Start it!
+ENTRYPOINT ["/autoshred.sh"]
